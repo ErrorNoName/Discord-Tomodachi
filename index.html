@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Discord Tomodachi — Friends and AI Life</title>
+    <meta
+      name="description"
+      content="Retrouve tes amis Discord sur une île Tomodachi. Une IA qui parle comme toi, café, mini-jeux, déco et quêtes — en local sur ton PC."
+    />
+    <meta property="og:title" content="Discord Tomodachi — Friends and AI Life" />
+    <meta
+      property="og:description"
+      content="Ton île, tes amis Discord, et une IA qui parle comme toi."
+    />
+    <meta property="og:image" content="assets/logo.png" />
+    <meta name="theme-color" content="#4aa3ff" />
+    <link rel="icon" href="assets/logo.png" type="image/png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="cursor" aria-hidden="true">
+      <img src="assets/hand-clean.png" alt="" draggable="false" />
+    </div>
+
+    <!-- Splash (no loading bar) -->
+    <div id="splash" class="splash" aria-hidden="false">
+      <div class="splash-glow"></div>
+      <div class="splash-floaties" id="splash-floaties"></div>
+      <img
+        class="splash-logo"
+        src="assets/logo.png"
+        alt="Discord Tomodachi"
+        draggable="false"
+      />
+      <p class="splash-skip">Clique pour entrer</p>
+    </div>
+
+    <div id="site" class="site is-hidden">
+      <header class="nav">
+        <a class="nav-brand" href="#top">
+          <img src="assets/logo.png" alt="" width="48" height="48" />
+          <span>Discord Tomodachi</span>
+        </a>
+        <nav class="nav-links">
+          <a href="#features">Fonctions</a>
+          <a href="#screens">Aperçu</a>
+          <a href="#how">Comment</a>
+          <a href="#access">Accès</a>
+        </nav>
+        <a
+          class="nav-cta"
+          href="https://discord.gg/mVDVkJ4Zvz"
+          target="_blank"
+          rel="noopener"
+          >Discord</a
+        >
+      </header>
+
+      <main id="top">
+        <!-- Hero -->
+        <section class="hero">
+          <div class="hero-sky" aria-hidden="true"></div>
+          <img
+            class="hero-island"
+            src="assets/island-bg.png"
+            alt=""
+            draggable="false"
+          />
+          <div class="hero-motes" aria-hidden="true"></div>
+          <div class="hero-content">
+            <img
+              class="hero-logo"
+              src="assets/logo.png"
+              alt="Discord Tomodachi"
+              draggable="false"
+            />
+            <p class="hero-tag">Friends and AI Life</p>
+            <p class="hero-lead">
+              Tes amis Discord vivent sur ton île. Une IA apprend ta façon de
+              parler — le tout reste sur ton PC.
+            </p>
+            <div class="hero-actions">
+              <a
+                class="btn btn-primary"
+                href="https://github.com/ErrorNoName/Discord-Tomodachi"
+                target="_blank"
+                rel="noopener"
+              >
+                <img src="assets/icon-studio.png" alt="" />
+                Voir le projet
+              </a>
+              <a
+                class="btn btn-discord"
+                href="https://discord.gg/mVDVkJ4Zvz"
+                target="_blank"
+                rel="noopener"
+              >
+                Rejoindre le Discord
+              </a>
+            </div>
+          </div>
+          <img
+            class="hero-guide"
+            src="assets/intro-guide.png"
+            alt=""
+            draggable="false"
+          />
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="section features">
+          <h2 class="section-title">Sur ton île</h2>
+          <p class="section-lead">
+            Tout ce que tu aimes de Tomodachi, branché sur Discord.
+          </p>
+          <div class="feature-rail">
+            <article class="feature">
+              <img src="assets/icon-friends.png" alt="" />
+              <h3>Amis Discord</h3>
+              <p>Ajoute tes potes sur l’île, déplace-les, visite leur chambre.</p>
+            </article>
+            <article class="feature">
+              <img src="assets/icon-ai.png" alt="" />
+              <h3>IA comme toi</h3>
+              <p>
+                Elle s’entraîne sur tes conversations locales et répond dans ton
+                style.
+              </p>
+            </article>
+            <article class="feature">
+              <img src="assets/icon-cafe.png" alt="" />
+              <h3>Café de l’île</h3>
+              <p>Offre un gâteau, du sushi… augmente le bonheur de tes amis.</p>
+            </article>
+            <article class="feature">
+              <img src="assets/icon-games.png" alt="" />
+              <h3>Mini-jeux</h3>
+              <p>Gagne des pièces, quiz, studio dessin et plus encore.</p>
+            </article>
+            <article class="feature">
+              <img src="assets/decor-fountain.png" alt="" />
+              <h3>Déco & saisons</h3>
+              <p>Plante, fontaine, ballons — l’île change avec le temps.</p>
+            </article>
+            <article class="feature">
+              <img src="assets/icon-gear.png" alt="" />
+              <h3>100 % local</h3>
+              <p>
+                Token Discord sur ta machine. Pas de cloud opaque pour tes DMs.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <!-- Screens -->
+        <section id="screens" class="section screens">
+          <h2 class="section-title">Aperçu</h2>
+          <p class="section-lead">L’ambiance du jeu, sans fioritures.</p>
+          <div class="showcase">
+            <figure class="showcase-main">
+              <img
+                id="screen-img"
+                src="assets/screens/island.png"
+                alt="L’île Discord Tomodachi"
+              />
+              <figcaption id="screen-caption">
+                <span class="showcase-kicker">L’île</span>
+                <span class="showcase-text"
+                  >Tes amis Discord vivent ici, sous le soleil de ton monde.</span
+                >
+              </figcaption>
+            </figure>
+            <div class="showcase-thumbs" id="screen-thumbs" role="tablist">
+              <!-- filled by main.js -->
+            </div>
+          </div>
+        </section>
+
+        <!-- How -->
+        <section id="how" class="section how">
+          <h2 class="section-title">Comment ça marche</h2>
+          <ol class="steps">
+            <li>
+              <span class="step-num">1</span>
+              <img src="assets/icon-gear.png" alt="" />
+              <div>
+                <h3>Connecte ton Discord</h3>
+                <p>Colle ton token dans l’app. La passerelle démarre en local.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <img src="assets/icon-friends.png" alt="" />
+              <div>
+                <h3>Invite tes amis</h3>
+                <p>Choisis qui vit sur l’île — ils apparaissent avec leur avatar.</p>
+              </div>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <img src="assets/icon-ai.png" alt="" />
+              <div>
+                <h3>Laisse l’IA répondre</h3>
+                <p>
+                  Elle lit le contexte, tape comme toi, et envoie (si tu
+                  actives).
+                </p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <!-- Lila -->
+        <section class="section guide-section">
+          <div class="guide-panel">
+            <img
+              class="guide-portrait"
+              src="assets/intro-guide.png"
+              alt="Lila, le guide"
+              draggable="false"
+            />
+            <div>
+              <h2 class="section-title">Lila t’accompagne</h2>
+              <p>
+                Première fois ? Lila te réveille sur l’île, te montre les
+                bâtiments, et t’aide à ajouter ton premier ami. Un vrai petit
+                tutoriel Tomodachi — pas un mur de texte.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <!-- World -->
+        <section class="section world">
+          <h2 class="section-title">Un monde qui vit</h2>
+          <div class="world-grid">
+            <figure>
+              <img src="assets/island-spring.png" alt="Île au printemps" />
+              <figcaption>Printemps</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/island-summer.png" alt="Île en été" />
+              <figcaption>Été</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/island-autumn.png" alt="Île en automne" />
+              <figcaption>Automne</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/island-night.png" alt="Île la nuit" />
+              <figcaption>Nuit</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <!-- Access / license -->
+        <section id="access" class="section access">
+          <div class="access-inner">
+            <img src="assets/icon-heart-full.png" alt="" class="access-heart" />
+            <h2 class="section-title">Accès payant via Discord</h2>
+            <p class="section-lead">
+              Le logiciel vérifie que tu es sur le serveur officiel et que tu as
+              le rôle <strong>Licencié</strong>. Pas de clé obscure — ton Discord
+              suffit.
+            </p>
+            <ul class="access-list">
+              <li>Rejoins le Discord Tomodachi</li>
+              <li>Demande l’accès dans <em>#obtenir-accès</em></li>
+              <li>Ouvre le jeu → l’accès se débloque tout seul</li>
+            </ul>
+            <div class="hero-actions">
+              <a
+                class="btn btn-discord"
+                href="https://discord.gg/mVDVkJ4Zvz"
+                target="_blank"
+                rel="noopener"
+                >Rejoindre &amp; demander l’accès</a
+              >
+              <a
+                class="btn btn-ghost"
+                href="https://github.com/ErrorNoName/Discord-Tomodachi"
+                target="_blank"
+                rel="noopener"
+                >GitHub</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Food strip -->
+        <section class="food-strip" aria-hidden="true">
+          <img src="assets/food-cake.png" alt="" />
+          <img src="assets/food-apple.png" alt="" />
+          <img src="assets/food-cookie.png" alt="" />
+          <img src="assets/food-juice.png" alt="" />
+          <img src="assets/food-burger.png" alt="" />
+          <img src="assets/food-sushi.png" alt="" />
+          <img src="assets/icon-coin.png" alt="" />
+          <img src="assets/icon-heart-full.png" alt="" />
+        </section>
+      </main>
+
+      <footer class="footer">
+        <img src="assets/logo.png" alt="" width="56" height="56" />
+        <p>
+          <strong>Discord Tomodachi</strong> — Friends and AI Life<br />
+          Non affilié à Discord ni à Nintendo.
+        </p>
+        <div class="footer-links">
+          <a
+            href="https://github.com/ErrorNoName/Discord-Tomodachi"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a
+            href="https://discord.gg/mVDVkJ4Zvz"
+            target="_blank"
+            rel="noopener"
+            >Discord</a
+          >
+        </div>
+      </footer>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>
