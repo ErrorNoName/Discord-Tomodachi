@@ -14,8 +14,11 @@
   --tomo-deep: #2b6fd6;
   --tomo-green: #7bd15a;
   --tomo-pink: #ff8fc8;
-  --sky: #8fd7ff;
-  --sky-deep: #4aa3ff;
+  --sky: #9edfff;
+  --sky-deep: #5eb0ff;
+  --sky-warm: #c8ebff;
+  --page-mid: #e8f6ff;
+  --page-soft: #f2faf0;
   --ink: #1a3358;
   --panel: rgba(255, 253, 245, 0.92);
   --font: "DreamLife", "Segoe UI", system-ui, sans-serif;
@@ -38,9 +41,130 @@ body {
   font-family: var(--font);
   font-synthesis: none;
   color: var(--ink);
-  background: #bfe9ff;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% -5%, #fff4c2 0%, transparent 42%),
+    radial-gradient(ellipse 70% 40% at 80% 20%, rgba(255, 180, 220, 0.22), transparent 50%),
+    linear-gradient(
+      180deg,
+      #8fd4ff 0%,
+      #b8e6ff 28%,
+      var(--page-mid) 55%,
+      var(--page-soft) 78%,
+      #d8f0c8 100%
+    );
+  background-attachment: fixed;
   cursor: none;
   overflow-x: hidden;
+}
+
+/* Fixed sky layer behind content */
+.page-sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.page-sky-sun {
+  position: absolute;
+  top: 6%;
+  left: 12%;
+  width: min(220px, 36vw);
+  height: min(220px, 36vw);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 236, 160, 0.95) 0%,
+    rgba(255, 210, 80, 0.35) 35%,
+    transparent 70%
+  );
+  filter: blur(2px);
+  animation: sun-breathe 8s ease-in-out infinite;
+}
+
+@keyframes sun-breathe {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+.page-sky-haze {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(232, 246, 255, 0.15) 40%,
+    rgba(242, 250, 240, 0.55) 100%
+  );
+}
+
+.page-cloud {
+  position: absolute;
+  width: 140px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.88);
+  border-radius: 48px;
+  filter: blur(0.5px);
+  box-shadow:
+    34px 8px 0 -8px rgba(255, 255, 255, 0.82),
+    -30px 10px 0 -10px rgba(255, 255, 255, 0.78),
+    0 8px 20px rgba(80, 140, 200, 0.12);
+  animation: cloud-drift linear infinite;
+  opacity: 0.9;
+}
+
+.page-cloud::after {
+  content: "";
+  position: absolute;
+  left: 28%;
+  top: -18px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 36px 4px 0 -4px rgba(255, 255, 255, 0.85);
+}
+
+.cloud-a {
+  top: 10%;
+  animation-duration: 70s;
+}
+.cloud-b {
+  top: 18%;
+  transform: scale(0.72);
+  animation-duration: 95s;
+  animation-delay: -25s;
+  opacity: 0.75;
+}
+.cloud-c {
+  top: 6%;
+  transform: scale(1.25);
+  animation-duration: 110s;
+  animation-delay: -55s;
+}
+.cloud-d {
+  top: 28%;
+  transform: scale(0.55);
+  animation-duration: 85s;
+  animation-delay: -40s;
+  opacity: 0.65;
+}
+
+@keyframes cloud-drift {
+  from {
+    left: -25%;
+  }
+  to {
+    left: 110%;
+  }
 }
 
 body.is-touch {
@@ -221,6 +345,8 @@ body.is-touch #cursor {
 
 /* —— Site shell —— */
 .site {
+  position: relative;
+  z-index: 1;
   opacity: 0;
   transition: opacity 1s ease;
 }
@@ -317,8 +443,9 @@ body.is-touch #cursor {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 20% 0%, rgba(255, 210, 63, 0.35), transparent 45%),
-    linear-gradient(180deg, #8fd7ff 0%, #bfe9ff 40%, #7bd15a 100%);
+    radial-gradient(ellipse at 18% 8%, rgba(255, 230, 120, 0.55), transparent 42%),
+    radial-gradient(ellipse at 85% 15%, rgba(255, 170, 210, 0.2), transparent 40%),
+    linear-gradient(180deg, #7ec8ff 0%, #a8e0ff 38%, #c8f0d8 72%, #b8e8c0 100%);
   z-index: 0;
 }
 
@@ -331,6 +458,32 @@ body.is-touch #cursor {
   object-position: center 40%;
   z-index: 1;
   animation: island-drift 18s ease-in-out infinite;
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    #000 0%,
+    #000 62%,
+    rgba(0, 0, 0, 0.55) 82%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    #000 0%,
+    #000 62%,
+    rgba(0, 0, 0, 0.55) 82%,
+    transparent 100%
+  );
+}
+
+.hero-clouds {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-clouds .page-cloud {
+  opacity: 0.55;
 }
 
 @keyframes island-drift {
@@ -419,10 +572,27 @@ body.is-touch #cursor {
   justify-content: center;
 }
 
+.hero-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: min(42%, 280px);
+  z-index: 4;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(184, 230, 255, 0) 0%,
+    rgba(232, 246, 255, 0.35) 35%,
+    rgba(242, 250, 240, 0.85) 70%,
+    var(--page-soft) 100%
+  );
+}
+
 .hero-guide {
   position: absolute;
   right: max(2%, calc(50% - 520px));
-  bottom: 4%;
+  bottom: 8%;
   width: min(220px, 32vw);
   z-index: 3;
   filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.3));
@@ -501,11 +671,60 @@ body.is-touch #cursor {
   box-shadow: 0 0 0 rgba(43, 111, 214, 0.2);
 }
 
+.btn-discover {
+  margin: 16px auto 0;
+  appearance: none;
+  border: 3px solid #fff;
+  cursor: none;
+  background: linear-gradient(180deg, #fff8e8, #ffe9b8);
+  box-shadow: 0 5px 0 #d4a86a;
+  color: var(--ink);
+  font-size: 1.05rem;
+  animation: discover-pulse 2.8s ease-in-out infinite;
+}
+
+.btn-discover img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.btn-discover:active {
+  box-shadow: 0 0 0 #d4a86a;
+}
+
+.btn-discover-inline {
+  margin: 18px 0 0;
+  animation: none;
+}
+
+body.is-touch .btn-discover {
+  cursor: pointer;
+}
+
+@keyframes discover-pulse {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
 /* —— Sections —— */
 .section {
+  position: relative;
+  z-index: 2;
   padding: 72px 22px;
   max-width: 1100px;
   margin: 0 auto;
+}
+
+.features {
+  margin-top: -48px;
+  padding-top: 40px;
 }
 
 .section-title {
@@ -958,5 +1177,411 @@ body.is-touch #cursor {
 
   .showcase-text {
     font-size: 0.95rem;
+  }
+}
+
+/* —— Discovery tour (Lila) —— */
+.discover {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  overflow: hidden;
+  background: #000;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.7s ease,
+    visibility 0.7s ease;
+}
+
+.discover[hidden] {
+  display: none !important;
+}
+
+.discover.is-open {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.discover.is-leaving {
+  opacity: 0;
+}
+
+.discover-black {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 0;
+}
+
+.discover-island-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0;
+  transform: scale(1.08);
+  transition:
+    opacity 2.6s ease,
+    transform 2.6s ease,
+    filter 2.6s ease;
+  filter: brightness(0.3) saturate(0.8);
+}
+
+.discover-island-wrap.is-dim {
+  opacity: 0.42;
+  transform: scale(1);
+  filter: brightness(0.45) saturate(0.85);
+}
+
+.discover-island-wrap.is-soft {
+  opacity: 0.78;
+  transform: scale(1);
+  filter: brightness(0.72) saturate(0.9);
+}
+
+.discover-island-wrap.is-bright {
+  opacity: 1;
+  transform: scale(1);
+  filter: brightness(1) saturate(1);
+}
+
+.discover-island {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  display: block;
+  animation: island-drift 18s ease-in-out infinite;
+}
+
+.discover-vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse at 50% 45%,
+      transparent 20%,
+      rgba(0, 0, 0, 0.5) 75%,
+      rgba(0, 0, 0, 0.88) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.35),
+      transparent 35%,
+      rgba(0, 0, 0, 0.45) 100%
+    );
+  pointer-events: none;
+}
+
+.discover-motes {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.discover-mote {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 248, 220, 0.55);
+  box-shadow: 0 0 10px rgba(255, 230, 160, 0.45);
+  animation: intro-mote-drift 14s ease-in-out infinite;
+}
+
+.discover-mote--0 {
+  left: 12%;
+  top: 70%;
+}
+.discover-mote--1 {
+  left: 28%;
+  top: 55%;
+  width: 4px;
+  height: 4px;
+  animation-delay: 1.2s;
+}
+.discover-mote--2 {
+  left: 48%;
+  top: 78%;
+  animation-delay: 2.4s;
+}
+.discover-mote--3 {
+  left: 66%;
+  top: 60%;
+  width: 5px;
+  height: 5px;
+  animation-delay: 0.6s;
+}
+.discover-mote--4 {
+  left: 82%;
+  top: 72%;
+  animation-delay: 3s;
+}
+
+@keyframes intro-mote-drift {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+    opacity: 0.15;
+  }
+  40% {
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-46vh) translateX(18px);
+    opacity: 0.35;
+  }
+}
+
+.discover-icons {
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: min(90vw, 480px);
+  pointer-events: none;
+  min-height: 72px;
+}
+
+.discover-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.35));
+  animation: discover-icon-in 0.55s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+.discover-icon:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.discover-icon:nth-child(3) {
+  animation-delay: 0.16s;
+}
+.discover-icon:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+@keyframes discover-icon-in {
+  from {
+    opacity: 0;
+    transform: scale(0.2) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.discover-line {
+  position: absolute;
+  left: 50%;
+  bottom: 14%;
+  transform: translateX(-50%);
+  z-index: 4;
+  width: min(92vw, 560px);
+  text-align: center;
+  pointer-events: none;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
+
+.discover-line.is-side {
+  left: 6%;
+  right: auto;
+  bottom: 16%;
+  transform: none;
+  width: min(54vw, 440px);
+  text-align: left;
+}
+
+.discover-line.is-title {
+  bottom: 22%;
+  width: min(92vw, 640px);
+}
+
+.discover-line.is-swap {
+  opacity: 0;
+  transform: translateX(-50%) translateY(12px);
+}
+
+.discover-line.is-side.is-swap {
+  transform: translateY(12px);
+}
+
+.discover-narration,
+.discover-title-card {
+  margin: 0;
+  color: #fff8e8;
+  font-size: clamp(18px, 3.2vw, 28px);
+  line-height: 1.45;
+  padding: 16px 20px 12px;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.65);
+}
+
+.discover-title-card {
+  font-size: clamp(20px, 3.6vw, 32px);
+  text-shadow: 0 3px 22px rgba(0, 0, 0, 0.75);
+}
+
+.discover-narration p,
+.discover-title-card p,
+.discover-bubble p {
+  margin: 0 0 0.35em;
+}
+
+.discover-narration p:last-child,
+.discover-title-card p:last-child,
+.discover-bubble p:last-of-type {
+  margin-bottom: 0;
+}
+
+.discover-bubble {
+  background: rgba(255, 253, 245, 0.96);
+  border: 3px solid #fff;
+  border-radius: 22px;
+  padding: 16px 18px 12px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.28);
+  color: #3a2f22;
+  animation: discover-bubble-in 0.55s ease both;
+}
+
+@keyframes discover-bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.discover-bubble p {
+  font-size: clamp(15px, 2.2vw, 18px);
+  line-height: 1.45;
+  text-shadow: none;
+}
+
+.discover-bubble-name {
+  display: inline-block;
+  font-size: 11px;
+  color: #6b4a00;
+  background: linear-gradient(180deg, #ffe27a, var(--tomo-yellow));
+  border-radius: 999px;
+  padding: 3px 10px 2px;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.discover-hint {
+  display: block;
+  margin-top: 10px;
+  font-size: 12px;
+  color: #8a7a60;
+  opacity: 0.9;
+  animation: tip-fade 1s ease 0.4s both;
+}
+
+.discover-guide-wrap {
+  position: absolute;
+  right: 2%;
+  bottom: 0;
+  z-index: 5;
+  width: min(42vw, 360px);
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(70px, 24px);
+  transition:
+    opacity 0.65s ease,
+    transform 0.7s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.discover-guide-wrap.is-in {
+  opacity: 1;
+  transform: translate(0, 0);
+}
+
+.discover-guide {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, 0.35));
+  animation: guide-float 3.2s ease-in-out infinite;
+}
+
+.discover-progress {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: min(40vw, 220px);
+  height: 4px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  z-index: 6;
+  overflow: hidden;
+}
+
+.discover-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #ffd84a, #ff9d3c);
+  border-radius: 999px;
+  transition: width 0.45s ease;
+}
+
+.discover-skip {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 6;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff8e8;
+  border-radius: 999px;
+  padding: 7px 14px 5px;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: none;
+  line-height: 1.3;
+}
+
+body.is-touch .discover-skip {
+  cursor: pointer;
+}
+
+.discover-skip:hover {
+  background: rgba(0, 0, 0, 0.55);
+}
+
+@media (max-width: 720px) {
+  .discover-line.is-side {
+    left: 50%;
+    bottom: 12%;
+    transform: translateX(-50%);
+    width: min(92vw, 560px);
+    text-align: center;
+  }
+
+  .discover-guide-wrap {
+    width: min(48vw, 220px);
+    right: 0;
+    opacity: 0.95;
+  }
+
+  .discover-icon {
+    width: 52px;
+    height: 52px;
   }
 }

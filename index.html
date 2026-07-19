@@ -23,6 +23,16 @@
       <img src="assets/hand-clean.png" alt="" draggable="false" />
     </div>
 
+    <!-- Persistent sky / clouds behind the page -->
+    <div class="page-sky" aria-hidden="true">
+      <div class="page-sky-sun"></div>
+      <div class="page-cloud cloud-a"></div>
+      <div class="page-cloud cloud-b"></div>
+      <div class="page-cloud cloud-c"></div>
+      <div class="page-cloud cloud-d"></div>
+      <div class="page-sky-haze"></div>
+    </div>
+
     <!-- Splash (no loading bar) -->
     <div id="splash" class="splash" aria-hidden="false">
       <div class="splash-glow"></div>
@@ -34,6 +44,53 @@
         draggable="false"
       />
       <p class="splash-skip">Clique pour entrer</p>
+    </div>
+
+    <!-- Discovery tour (Lila — version site) -->
+    <div
+      id="discover"
+      class="discover"
+      hidden
+      aria-hidden="true"
+      role="dialog"
+      aria-label="Découverte avec Lila"
+    >
+      <div class="discover-black" aria-hidden="true"></div>
+      <div class="discover-motes" aria-hidden="true">
+        <span class="discover-mote discover-mote--0"></span>
+        <span class="discover-mote discover-mote--1"></span>
+        <span class="discover-mote discover-mote--2"></span>
+        <span class="discover-mote discover-mote--3"></span>
+        <span class="discover-mote discover-mote--4"></span>
+        <span class="discover-mote discover-mote--0" style="left: 40%; top: 40%"></span>
+        <span class="discover-mote discover-mote--2" style="left: 72%; top: 50%"></span>
+      </div>
+      <div class="discover-island-wrap" id="discover-island-wrap">
+        <img
+          class="discover-island"
+          id="discover-island"
+          src="assets/intro-dawn.png"
+          alt=""
+          draggable="false"
+        />
+        <div class="discover-vignette"></div>
+      </div>
+      <div class="discover-icons" id="discover-icons" aria-hidden="true"></div>
+      <div class="discover-line" id="discover-line"></div>
+      <div class="discover-guide-wrap" id="discover-guide" hidden>
+        <img
+          class="discover-guide"
+          src="assets/intro-guide.png"
+          alt="Lila"
+          draggable="false"
+        />
+      </div>
+      <div class="discover-progress" aria-hidden="true">
+        <div class="discover-progress-fill" id="discover-progress"></div>
+      </div>
+      <button type="button" class="discover-skip" id="discover-skip">
+        Passer
+      </button>
     </div>
 
     <div id="site" class="site is-hidden">
@@ -67,6 +124,11 @@
             alt=""
             draggable="false"
           />
+          <div class="hero-clouds" aria-hidden="true">
+            <div class="page-cloud cloud-a"></div>
+            <div class="page-cloud cloud-b"></div>
+            <div class="page-cloud cloud-c"></div>
+          </div>
           <div class="hero-motes" aria-hidden="true"></div>
           <div class="hero-content">
             <img
@@ -99,6 +161,10 @@
                 Rejoindre le Discord
               </a>
             </div>
+            <button type="button" class="btn btn-discover" id="btn-discover">
+              <img src="assets/intro-guide.png" alt="" />
+              Découvrir avec Lila
+            </button>
           </div>
           <img
             class="hero-guide"
@@ -106,6 +172,7 @@
             alt=""
             draggable="false"
           />
+          <div class="hero-fade" aria-hidden="true"></div>
         </section>
 
         <!-- Features -->
@@ -224,9 +291,14 @@
               <h2 class="section-title">Lila t’accompagne</h2>
               <p>
                 Première fois ? Lila te réveille sur l’île, te montre les
-                bâtiments, et t’aide à ajouter ton premier ami. Un vrai petit
-                tutoriel Tomodachi — pas un mur de texte.
+                bâtiments, et t’aide à ajouter ton premier ami. Sur ce site,
+                clique <strong>Découvrir avec Lila</strong> pour une visite
+                guidée des systèmes — café, jeux, chambres, IA et plus.
               </p>
+              <button type="button" class="btn btn-discover btn-discover-inline" id="btn-discover-2">
+                <img src="assets/intro-guide.png" alt="" />
+                Relancer la découverte
+              </button>
             </div>
           </div>
         </section>
@@ -246,6 +318,14 @@
             <figure>
               <img src="assets/island-autumn.png" alt="Île en automne" />
               <figcaption>Automne</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/island-dawn.png" alt="Île à l’aube" />
+              <figcaption>Aube</figcaption>
+            </figure>
+            <figure>
+              <img src="assets/island-dusk.png" alt="Île au crépuscule" />
+              <figcaption>Crépuscule</figcaption>
             </figure>
             <figure>
               <img src="assets/island-night.png" alt="Île la nuit" />
