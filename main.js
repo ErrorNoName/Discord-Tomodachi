@@ -406,12 +406,13 @@
   });
   setTimeout(finishSplash, 3400);
 
-  /* —— Showcase gallery —— */
+  /* —— Showcase gallery (cinematic) —— */
   let idx = 0;
   const imgEl = document.getElementById("screen-img");
   const capEl = document.getElementById("screen-caption");
-  const thumbs = document.getElementById("screen-thumbs");
+  const tabsEl = document.getElementById("screen-thumbs");
   const mainFig = document.querySelector(".showcase-main");
+  let autoTimer = 0;
 
   const show = (n, { user } = {}) => {
     idx = (n + SCREENS.length) % SCREENS.length;
@@ -422,7 +423,7 @@
       imgEl.src = s.src;
       imgEl.alt = `${s.kicker} — ${s.text}`;
       capEl.innerHTML = `<span class="showcase-kicker">${s.kicker}</span><span class="showcase-text">${s.text}</span>`;
-      thumbs?.querySelectorAll(".showcase-thumb").forEach((b, i) => {
+      tabsEl?.querySelectorAll(".showcase-tab").forEach((b, i) => {
         b.classList.toggle("is-active", i === idx);
         b.setAttribute("aria-selected", i === idx ? "true" : "false");
       });
@@ -431,26 +432,37 @@
 
     if (user && mainFig) {
       mainFig.classList.add("is-swap");
-      setTimeout(apply, 160);
+      setTimeout(apply, 220);
       playSfx("hover", 0.25);
     } else {
       apply();
     }
+
+    window.clearInterval(autoTimer);
+    autoTimer = window.setInterval(() => show(idx + 1), 7000);
   };
 
   SCREENS.forEach((s, i) => {
     const b = document.createElement("button");
     b.type = "button";
-    b.className = "showcase-thumb";
+    b.className = "showcase-tab";
     b.setAttribute("role", "tab");
     b.setAttribute("aria-label", s.kicker);
-    b.innerHTML = `<img src="${s.thumb}" alt="" draggable="false" />`;
+    b.innerHTML = `<img src="${s.src}" alt="" draggable="false" /><span>${s.kicker}</span>`;
     b.addEventListener("click", () => show(i, { user: true }));
-    thumbs?.appendChild(b);
+    tabsEl?.appendChild(b);
+  });
+
+  document.getElementById("screen-prev")?.addEventListener("click", () => {
+    playSfx("click", 0.3);
+    show(idx - 1, { user: true });
+  });
+  document.getElementById("screen-next")?.addEventListener("click", () => {
+    playSfx("click", 0.3);
+    show(idx + 1, { user: true });
   });
 
   show(0);
-  setInterval(() => show(idx + 1), 6000);
 
   /* —— Scroll reveal —— */
   const revealables = document.querySelectorAll(

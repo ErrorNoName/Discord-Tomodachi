@@ -124,6 +124,7 @@
             alt=""
             draggable="false"
           />
+          <div class="hero-sky-blend" aria-hidden="true"></div>
           <div class="hero-clouds" aria-hidden="true">
             <div class="page-cloud cloud-a"></div>
             <div class="page-cloud cloud-b"></div>
@@ -220,25 +221,47 @@
           </div>
         </section>
 
-        <!-- Screens -->
+        <!-- Screens — cinematic stage -->
         <section id="screens" class="section screens">
           <h2 class="section-title">Aperçu</h2>
-          <p class="section-lead">L’ambiance du jeu, sans fioritures.</p>
-          <div class="showcase">
-            <figure class="showcase-main">
-              <img
-                id="screen-img"
-                src="assets/screens/island.png"
-                alt="L’île Discord Tomodachi"
-              />
-              <figcaption id="screen-caption">
-                <span class="showcase-kicker">L’île</span>
-                <span class="showcase-text"
-                  >Tes amis Discord vivent ici, sous le soleil de ton monde.</span
-                >
-              </figcaption>
-            </figure>
-            <div class="showcase-thumbs" id="screen-thumbs" role="tablist">
+          <p class="section-lead">
+            Plonge dans l’île — clique une scène ou laisse défiler.
+          </p>
+          <div class="showcase" id="showcase">
+            <div class="showcase-stage">
+              <button
+                type="button"
+                class="showcase-nav showcase-nav--prev"
+                id="screen-prev"
+                aria-label="Scène précédente"
+              >
+                ‹
+              </button>
+              <figure class="showcase-main">
+                <img
+                  id="screen-img"
+                  src="assets/screens/island.png"
+                  alt="L’île Discord Tomodachi"
+                />
+                <div class="showcase-glow" aria-hidden="true"></div>
+                <figcaption id="screen-caption">
+                  <span class="showcase-kicker">L’île</span>
+                  <span class="showcase-text"
+                    >Tes amis Discord vivent ici, sous le soleil de ton
+                    monde.</span
+                  >
+                </figcaption>
+              </figure>
+              <button
+                type="button"
+                class="showcase-nav showcase-nav--next"
+                id="screen-next"
+                aria-label="Scène suivante"
+              >
+                ›
+              </button>
+            </div>
+            <div class="showcase-tabs" id="screen-thumbs" role="tablist">
               <!-- filled by main.js -->
             </div>
           </div>
